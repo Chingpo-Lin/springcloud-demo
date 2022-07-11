@@ -1,0 +1,26 @@
+
+
+server:
+  port: 8888
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes: #数组形式 (can add another by -)
+        - id: order-service #路路由唯⼀一标识
+          uri: lb://cloud-order-service #从nacos进行转发
+
+          order: 1 #优先级，数字越⼩小优先级越⾼高
+          predicates: #断⾔言 配置哪个路路径才转发
+            - Path=/order-server/**
+          filters: #过滤器器，请求在传递过程中通过过
+            - StripPrefix=1 #去掉第⼀一层前缀 (order-server)
+      discovery:
+        locator:
+          enabled: true # 开启gateway拉取nacos的服务
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+

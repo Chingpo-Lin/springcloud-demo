@@ -1,0 +1,5 @@
+existing problem:
+
+1. ip is fixed between services
+2. cannot load balancing between service
+3. because of direct call between services, it's hard to maintain code
