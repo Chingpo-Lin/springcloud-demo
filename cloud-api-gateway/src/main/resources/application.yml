@@ -13,7 +13,7 @@ spring:
           uri: lb://cloud-order-service #从nacos进行转发
 
           order: 1 #优先级，数字越⼩小优先级越⾼高
-          predicates: #断⾔言 配置哪个路路径才转发
+          predicates: #断⾔ 配置哪个路路径才转发
             - Path=/order-server/**
           filters: #过滤器器，请求在传递过程中通过过
             - StripPrefix=1 #去掉第⼀一层前缀 (order-server)
